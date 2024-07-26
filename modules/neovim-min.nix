@@ -6,7 +6,7 @@
     enable = true;
     defaultEditor = true;
     configure = {
-      customRC = mkDefault ''
+      customRC = ''
       lua <<EOF
       print("minimal nvim config")
 
