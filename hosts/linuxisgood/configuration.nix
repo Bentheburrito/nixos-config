@@ -167,7 +167,7 @@
     # dev stuff
     gnupg
     elixir-ls
-    pkgs-unstable.elixir_1_16
+    pkgs-unstable.elixir
     ## Need to install Erlang explicitly to get `epmd` for next-ls to work
     pkgs-unstable.erlang
     pkgs-unstable.elmPackages.elm # added "unstable." on 1/12 need to see after reboot if unstable version fixes this issue I was running into: https://github.com/NixOS/nixpkgs/issues/277156 
