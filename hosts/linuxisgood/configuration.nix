@@ -11,6 +11,7 @@
       ../../modules/nvidia.nix
       ../../modules/neovim-dev.nix
       ../../modules/tmux.nix
+      ../../modules/postgres.nix
     ];
 
   # Be able to mount my 2TB external hard drive
@@ -58,33 +59,14 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # note: the 'authentication' config is very finicky if you don't get the 
-  # syntax right - nix will time out the postgres systemd service after 2 mins 
-  # even though the server itself is still functional. 
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_12;
+  # PostgreSQL
+  services.postgresql = let users = ["postgres"]; in {
+    ensureUsers = map (u: { name = u; }) users;
     authentication = pkgs.lib.mkForce ''
-#      local   all             postgres                                md5
-
-      # TYPE  DATABASE        USER            ADDRESS                 METHOD
-
-      # "local" is for Unix domain socket connections only
-      local   all             all                                     peer
-      # IPv4 local connections:
-      host    all             all             127.0.0.1/32            md5
-      # IPv6 local connections:
- #     host    all             all             ::1/128                 md5
-      # Allow replication connections from localhost, by a user with the
-      # replication privilege.
-  #    local   replication     all                                     peer
-   #   host    replication     all             127.0.0.1/32            md5
-    #  host    replication     all             ::1/128                 md5
+      # TYPE   DATABASE   USER      ADDRESS          METHOD         OPT_IDENT_MAP
+      local    all        postgres                   trust
+      host     all        postgres  127.0.0.1/32     scram-sha-256
     '';
-#       local all       all       trust
-#    initialScript = ''
- #     ALTER USER postgres WITH PASSWORD 'postgres';
-  #  '';
   };
 
   # Enable sound with pipewire.

@@ -22,7 +22,7 @@
        # Let other names login as themselves
        superuser_map      /^(.*)$   \1
     '';
-    authentication = pkgs.lib.mkForce ''
+    authentication = pkgs.lib.mkDefault ''
       # TYPE   DATABASE   USER   ADDRESS          METHOD    OPT_IDENT_MAP
 
       # "local" is for Unix domain socket connections only
