@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, ... }:
+{ config, pkgs, pkgs-unstable, self, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -12,6 +12,7 @@
       ../../modules/neovim-dev.nix
       ../../modules/tmux.nix
       ../../modules/postgres.nix
+      ../../modules/auto_upgrade.nix
     ];
 
   # Be able to mount my 2TB external hard drive
@@ -40,11 +41,7 @@
     });
   }) ];
 
-  # Enable auto-upgrading, every Saturday @ 10am PT
-  system.autoUpgrade = {
-    enable = true;
-    dates = "Sat *-*-* 10:00:00 America/Los_Angeles";
-  };
+  system.autoUpgrade.flake = self.outPath;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
