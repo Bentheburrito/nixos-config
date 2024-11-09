@@ -12,7 +12,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Conduit v0.8.0
-    conduit.url = "gitlab:famedly/conduit/7a5b8930134cf7ea5ff9880e6fa468b2b3e05c98";
+    conduit.url = "gitlab:famedly/conduit/f8d7ef04e664580e882bac852877b68e7bd3ab1e";
 
     # The nixpkgs entry in the flake registry, overriding it to use a specific Git revision.
     # nixpkgsRegistryOverride.url = "nixpkgs/a3a3dda3bacf61e8a39258a0ed9c924eeca8e293";
