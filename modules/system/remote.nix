@@ -14,4 +14,6 @@
   # Ignore the lid closing
   services.logind.lidSwitch = "ignore";
   services.logind.lidSwitchExternalPower = "ignore";
+
+  environment.systemPackages = with pkgs; [ htop ];
 }

@@ -112,6 +112,7 @@
       firefox
       librewolf
       # Communications
+      protonmail-bridge-gui
       thunderbird
       element-desktop
       # Productivity/Workflow
